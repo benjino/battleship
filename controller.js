@@ -1,3 +1,6 @@
+//starts torpedo count to zero
+var torpedo = 0;
+
 $(document).ready(function() {
     for (var row = 0; row < 10; row++) {
       $("table").append('<tr id="' + row + '"></tr>')
@@ -7,14 +10,13 @@ $(document).ready(function() {
         //makes a new table cell with id "index<i>" under "row<currentRow"
       }
     }
-
+    //when user clicks position, it changes color to show that it has been torpedoed.
     $("td").on("click", function() {
+      //adds class of cellClicked to position
       $(this).addClass("cellClicked");
+      //adds one to torpedo count
+      torpedo++;
+      //.text replaces h2 text with string + torpedo count.
+      $("#launched").text("Torpedos Launched: " + torpedo);
     });
-    
 });
-
-//As a user when I click on a position, the position changes color so that I can tell that a position has been torpedoed.
-//define what position is
-//untouched position
-//clicked position(going )
