@@ -1,0 +1,24 @@
+.main-container {
+  margin: 0 auto;
+  width: 433px;
+}
+
+table {
+  border: 2px solid #000;
+  border-collapse: collapse;
+}
+
+table td {
+  border: 1px solid #000;
+  width: 40px;
+  height: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+p.btn {
+  text-align: center;
+}
