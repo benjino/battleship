@@ -7,12 +7,14 @@ $(document).ready(function() {
         //makes a new table cell with id "index<i>" under "row<currentRow"
       }
     }
+
+    $("td").on("click", function() {
+      $(this).addClass("cellClicked");
+    });
+    
 });
 
 //As a user when I click on a position, the position changes color so that I can tell that a position has been torpedoed.
 //define what position is
 //untouched position
 //clicked position(going )
-$("positionClicked").on("click", function() {
-
-});

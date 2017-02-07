@@ -22,3 +22,7 @@ h2 {
 p.btn {
   text-align: center;
 }
+
+.cellClicked {
+background-color: red;
+}
