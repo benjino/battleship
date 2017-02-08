@@ -6,11 +6,14 @@ $(document).ready(function() {
       $("table").append('<tr id="' + row + '"></tr>')
       //create a new table row with id "row<currentRow>"
       for (var column = 0; column < 10; column++) {
-        $('#' + row).append("<td></td>");
+        $('#' + row).append('<td id="' + row + column + '"></td>');
         //makes a new table cell with id "index<i>" under "row<currentRow"
       }
     }
-    //when user clicks position, it changes color to show that it has been torpedoed.
+    placeShip();
+    // places ships --> function exists on model.js; calls function here.
+
+    // user clicks position, changes color to show it has been torpedoed.
     $("td").on("click", function() {
       //adds class of cellClicked to position
       $(this).addClass("cellClicked");
@@ -20,5 +23,19 @@ $(document).ready(function() {
       $("#launched").text("Torpedos Launched: " + torpedo);
       //.off() method removes event handlers that were attached with .on().
       $(this).off("click");
+
+      var row = $(this).attr("id")[0];
+      var col = $(this).attr("id")[1];
+      // declare variable for row and column by id position
+      if (board[row][col] == 1 ) {
+      // "1" comes from placeShip function; places it on the board.
+        console.log("Hit");
+      } else {
+        console.log("Miss");
+      }
+      // if it finds "1" in td do 'hit', else do 'miss'
     });
 });
+
+
+// $(this).whatFunction?();

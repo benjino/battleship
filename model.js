@@ -11,18 +11,17 @@ var board = [
 [0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0]
 ];
-
+//placeShip places five single hit ships to 2D array 'board'
 function placeShip() {
   for (i = 0; i < 5; i++) {
 
-  var row = Math.floor(Math.random() * 10);
-  var col = Math.floor(Math.random() * 10);
-  if(board[row][col] == 0) {
-    board[row][col] = ship
+    var row = Math.floor(Math.random() * 10);
+    var col = Math.floor(Math.random() * 10);
+    if(board[row][col] == 0) {
+      board[row][col] = ship;
+    }
   }
 };
-
-console.log(board);
 
 //loop through board, if board[row][col] == 0, make it equal ship
 //if it already equals ship, try again
