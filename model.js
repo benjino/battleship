@@ -13,30 +13,30 @@ var board = [
 ];
 
 function placeShip() {
-  var tryAgain = "";
+  for (i = 0; i < 5; i++) {
+
   var row = Math.floor(Math.random() * 10);
-    console.log(row);
   var col = Math.floor(Math.random() * 10);
-    console.log(col);
+  if(board[row][col] == 0) {
+    board[row][col] = ship
+  }
+};
 
-  board[row][col] = ship;
-
-
-  for (i = 0; i < 1; i++) {
-    board[row][col + i] = 1 //moves right one spot
-  };
-
-
-  [row + 1]//up
-  [col + 1]//right
-  [row - 1]//down
-  [col - 1]//left
+console.log(board);
 
 //loop through board, if board[row][col] == 0, make it equal ship
 //if it already equals ship, try again
 //keep doing this until 5 ships have been placed
-}
 
+// for (i = 0; i < 1; i++) {
+//   board[row][col + i] = 1 //moves right one spot
+// };
+//
+//
+// [row + 1]//up
+// [col + 1]//right
+// [row - 1]//down
+// [col - 1]//left
 // Create a loop that accesses the board at a random row and column and places a SHIP.
 
 // while (condition) {
