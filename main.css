@@ -23,6 +23,12 @@ p.btn {
   text-align: center;
 }
 
+button {
+  border-radius: 3px;
+  font-size: 20px;
+  padding: 12px 20px;
+}
+
 .cellClicked {
 background-color: red;
 }

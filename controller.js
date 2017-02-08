@@ -18,5 +18,7 @@ $(document).ready(function() {
       torpedo++;
       //.text replaces h2 text with string + torpedo count.
       $("#launched").text("Torpedos Launched: " + torpedo);
+      //.off() method removes event handlers that were attached with .on().
+      $(this).off("click");
     });
 });
