@@ -11,8 +11,13 @@ var board = [
 [0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0]
 ];
+
+
 //placeShip places five single hit ships to 2D array 'board'
 function placeShip() {
+  //loop through board, if board[row][col] == 0, make it equal ship
+  //if it already equals ship, try again
+  //keep doing this until 5 ships have been placed
   for (i = 0; i < 5; i++) {
 
     var row = Math.floor(Math.random() * 10);
@@ -23,9 +28,27 @@ function placeShip() {
   }
 };
 
-//loop through board, if board[row][col] == 0, make it equal ship
-//if it already equals ship, try again
-//keep doing this until 5 ships have been placed
+function findShip() {
+  for (var row = 0; row < 10; row++) {
+    //loop through the row, then…
+    for (var column = 0; column < 10; column++) {
+      //loop through the current column…
+      if (board[row][column] == 1 ) {
+        $("#" + row + column).addClass("ship_location");
+      } // having no else statement leaves board as is.
+    }
+  }
+};
+
+  // loop through board rows and columns (consult your loop within a loop that makes the board in your controller)
+  // if board[row][column] === 1, that means a ship is there
+  // then .addClass to that position (maybe using 'this'?)
+
+
+//Hint: Use a .addClass("...") conditional on the torpedo counter.
+
+
+
 
 // for (i = 0; i < 1; i++) {
 //   board[row][col + i] = 1 //moves right one spot

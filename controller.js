@@ -18,13 +18,12 @@ $(document).ready(function() {
     // user clicks position, changes color to show it has been torpedoed.
     $("td").on("click", function() {
       //adds class of cellClicked to position
-      $(this).addClass("cellClicked");
+      $(this).addClass("cell_clicked");
       //adds one to torpedo count
       torpedo++;
       //.text replaces h2 text with string + torpedo count.
       $("#launched").text("Torpedos Launched: " + torpedo);
       //.off() method removes event handlers that were attached with .on().
-
       $(this).off("click");
 
       var row = $(this).attr("id")[0];
@@ -45,19 +44,14 @@ $(document).ready(function() {
           $("td").off("click");
 
       } else if (hit != 5 && torpedo >= 25) {
-
+          findShip();
           $("#winner").text("You Lose!");
           $("td").off("click");
       }
-      // if it finds "1" in td do 'hit', else do 'miss'
     });
 });
 
 
-//If hit == 5, you win
-
-// //console.log("Hit");
-// $("#hit").text("Hit: " + torpedo);
-// } else {
-// //console.log("Miss");
-// $("#miss").text("Miss: " + torpedo) ;
+// As a user if I lose, I can see where the ships were, so that I know there were actual ships on the board.
+//
+// Hint: Use a .addClass("...") conditional on the torpedo counter.

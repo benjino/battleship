@@ -64,6 +64,10 @@ button:focus {
   display: none;
 }
 
-.cellClicked {
-background-color: red;
+.cell_clicked {
+  background-color: red;
+}
+
+.ship_location {
+  background-color: green;
 }
