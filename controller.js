@@ -1,5 +1,7 @@
 //starts torpedo count to zero
 var torpedo = 0;
+var hit = 0;
+var miss = "";
 
 $(document).ready(function() {
     for (var row = 0; row < 10; row++) {
@@ -22,20 +24,40 @@ $(document).ready(function() {
       //.text replaces h2 text with string + torpedo count.
       $("#launched").text("Torpedos Launched: " + torpedo);
       //.off() method removes event handlers that were attached with .on().
+
       $(this).off("click");
 
       var row = $(this).attr("id")[0];
       var col = $(this).attr("id")[1];
       // declare variable for row and column by id position
-      if (board[row][col] == 1 ) {
-      // "1" comes from placeShip function; places it on the board.
-        console.log("Hit");
-      } else {
-        console.log("Miss");
+      if (board[row][col] == 0 ) {
+
+          $("#status").text("Miss!");
+
+      } else if (board[row][col] == 1) {
+
+          $("#status").text("Hit!");
+          $("#hitcount").text("Hit count: " + (hit += 1));
+
+      } if (hit == 5) {
+
+          $("#winner").text("You Win!");
+          $("td").off("click");
+
+      } else if (hit != 5 && torpedo >= 25) {
+
+          $("#winner").text("You Lose!");
+          $("td").off("click");
       }
       // if it finds "1" in td do 'hit', else do 'miss'
     });
 });
 
 
-// $(this).whatFunction?();
+//If hit == 5, you win
+
+// //console.log("Hit");
+// $("#hit").text("Hit: " + torpedo);
+// } else {
+// //console.log("Miss");
+// $("#miss").text("Miss: " + torpedo) ;
