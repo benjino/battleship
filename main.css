@@ -4,7 +4,7 @@ body {
 
 .main-container {
   margin: 0 auto;
-  width: 433px;
+  width: 445px;
 }
 
 table {
@@ -19,13 +19,13 @@ table td {
 }
 
 .stats {
-  width: 433px
+  width: 445px
 }
 
 .stat {
   float: left;
   text-align: center;
-  width: 143px;
+  width: 120px;
 }
 
 .btn-container {
@@ -66,6 +66,10 @@ button:focus {
 
 .cell_clicked {
   background-color: red;
+}
+
+.ship_hit {
+  background-color: orange;
 }
 
 .ship_location {

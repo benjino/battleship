@@ -1,5 +1,6 @@
 //starts torpedo count to zero
 var torpedo = 0;
+var remaining = 25;
 var hit = 0;
 var miss = "";
 
@@ -23,7 +24,11 @@ $(document).ready(function() {
       torpedo++;
       //.text replaces h2 text with string + torpedo count.
       $("#launched").text("Torpedos Launched: " + torpedo);
-      //.off() method removes event handlers that were attached with .on().
+      //decrements torpedo count from 25 downward.
+      remaining--;
+      //.text replaces element tag with string + remaining torpedos
+      $("#remaining").text("Remaining: " + remaining);
+      //.off() method removes .on() event handlers
       $(this).off("click");
 
       var row = $(this).attr("id")[0];
@@ -36,7 +41,7 @@ $(document).ready(function() {
       } else if (board[row][col] == 1) {
 
           $("#status").text("Hit!");
-          $("#hitcount").text("Hit count: " + (hit += 1));
+          $("#hitcount").text("Hits: " + (hit += 1));
 
       } if (hit == 5) {
 
