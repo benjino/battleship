@@ -48,7 +48,7 @@ $(document).ready(function() {
           $("#winner").text("You Win!");
           $("td").off("click");
 
-      } else if (hit != 5 && torpedo >= 25) {
+      } else if (hit != 5 && torpedo >= 1) {
           findShip();
           $("#winner").text("You Lose!");
           $("td").off("click");

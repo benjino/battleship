@@ -11,6 +11,9 @@ var board = [
 [0,0,0,0,0,0,0,0,0,0]
 ];
 
+function onBoard(value) {
+  return value < 10 && value >= 0;
+}
 // allClear looks for where there is no ship
 function allClear(row, col) {
   // is < 0 (to the left)
@@ -21,41 +24,35 @@ function allClear(row, col) {
   var nCol = col - 1;
   // is > 0 (to down)
   var pCol = col + 1;
-  // var row = 0
-  // var col = 0
- console.log(row);
- console.log(col);
- console.log(nRow);
- console.log(pRow);
- console.log(nCol);
- console.log(pCol);
-//   // this is going to refer to id 00
+
+  // If returns false, identifies where ship cannot be placed.
   if (board[row][col] == ship) {
     return false;
   }
-  if (nRow < 10 && board[nRow][col] === ship) {
+  if (onBoard(nRow) && board[nRow][col] === ship) {
     return false;
   }
-  if (pRow < 10 && board[pRow][col] === ship) {
+  if (onBoard(pRow) && board[pRow][col] === ship) {
     return false;
   }
-  if (nCol >= 0 && board[row][nCol] === ship) {
+  if (onBoard(nCol) && board[row][nCol] === ship) {
     return false;
   }
-  if (pCol < 10 && board[row][pCol] === ship) {
+  if (onBoard(pCol) && board[row][pCol] === ship) {
     return false;
   }
-  if (nCol >= 0 && nRow >= 0 && board[nRow][nCol] === ship) {
+  if (onBoard(nCol) &&  onBoard(nRow) && board[nRow][nCol] === ship) {
     return false;
   }
-  if (pCol < 10 && nRow >= 0 && board[nRow][pCol] === ship) {
+  if (onBoard(pCol) && onBoard(nRow) && board[nRow][pCol] === ship) {
     return false;
   }
-  if (pCol < 10 && pRow < 10 && board[pRow][pCol] === ship) {
+  if (onBoard(pCol) && onBoard(pRow) && board[pRow][pCol] === ship) {
     return false;
   }
-  if (nCol >= 0 && pRow < 10 && board[pRow][nCol] === ship) {
+  if (onBoard(nCol) && onBoard(pRow) && board[pRow][nCol] === ship) {
     return false;
+  //If returns true, allClear(inside placeShip) cylcles through 5 times until 5 ships placed on the board.
   } else {
     return true;
   }
@@ -83,10 +80,21 @@ function placeShip() {
     if(allClear(row, col) && board[row][col] === 0) {
       board[row][col] = ship;
     } else {
+      // i-- is needed to keep count < 5 until all ships are placed on board. If count is outside of the board (i = 0; i < 5; i++)
       i--;
     }
   }
 };
+
+// shipBuilderHorizontal(5);
+// shipBuilderHorizontal(4);
+// shipBuilderHorizontal(3);
+// shipBuilderHorizontal(2);
+shipBuilderVertical(5);
+shipBuilderVertical(4);
+shipBuilderVertical(3);
+shipBuilderVertical(2);
+
 
 function findShip() {
     for (var row = 0; row < 10; row++) {
@@ -118,3 +126,49 @@ function findShip() {
 // }
 
 // var direction = Math.floor(Math.random() * 3);
+
+function shipBuilderHorizontal(lengthOfShip) {
+  // keep running until ship is found
+  for (i = 0; i < 1; i++) {
+    // get random position
+    var row = Math.floor(Math.random() * 10);
+    var col = Math.floor(Math.random() * (10 - lengthOfShip));
+    // check if clear on spot and 2 spots left and 2 spots right
+    var isClear = true;
+    for(j = 0; j < lengthOfShip; j++){
+      isClear = isClear && allClear(row, col + j)
+    }
+
+    if(isClear){
+      for(j = 0; j < lengthOfShip; j++){
+        board[row][col + j] = ship;
+      }
+    } else {
+      // i-- is needed to keep count < 5 until all ships are placed on board. If count is outside of the board (i = 0; i < 5; i++)
+      i--;
+    }
+  }
+}
+
+function shipBuilderVertical(lengthOfShip) {
+  // keep running until ship is found
+  for (i = 0; i < 1; i++) {
+    // get random position
+    var row = Math.floor(Math.random() * (10 - lengthOfShip));
+    var col = Math.floor(Math.random() * 10);
+    // check if clear on spot and 2 spots left and 2 spots right
+    var isClear = true;
+    for(j = 0; j < lengthOfShip; j++){
+      isClear = isClear && allClear(row + j, col)
+    }
+
+    if(isClear){
+      for(j = 0; j < lengthOfShip; j++){
+        board[row + j][col] = ship;
+      }
+    } else {
+      // i-- is needed to keep count < 5 until all ships are placed on board. If count is outside of the board (i = 0; i < 5; i++)
+      i--;
+    }
+  }
+}
