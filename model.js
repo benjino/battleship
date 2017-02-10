@@ -11,6 +11,65 @@ var board = [
 [0,0,0,0,0,0,0,0,0,0]
 ];
 
+// allClear looks for where there is no ship
+function allClear(row, col) {
+  // is < 0 (to the left)
+  var nRow = row - 1;
+  // is > 0 (to the right)
+  var pRow = row + 1;
+  // is < 0 (to up)
+  var nCol = col - 1;
+  // is > 0 (to down)
+  var pCol = col + 1;
+  // var row = 0
+  // var col = 0
+ console.log(row);
+ console.log(col);
+ console.log(nRow);
+ console.log(pRow);
+ console.log(nCol);
+ console.log(pCol);
+//   // this is going to refer to id 00
+  if (board[row][col] == ship) {
+    return false;
+  }
+  if (nRow < 10 && board[nRow][col] === ship) {
+    return false;
+  }
+  if (pRow < 10 && board[pRow][col] === ship) {
+    return false;
+  }
+  if (nCol >= 0 && board[row][nCol] === ship) {
+    return false;
+  }
+  if (pCol < 10 && board[row][pCol] === ship) {
+    return false;
+  }
+  if (nCol >= 0 && nRow >= 0 && board[nRow][nCol] === ship) {
+    return false;
+  }
+  if (pCol < 10 && nRow >= 0 && board[nRow][pCol] === ship) {
+    return false;
+  }
+  if (pCol < 10 && pRow < 10 && board[pRow][pCol] === ship) {
+    return false;
+  }
+  if (nCol >= 0 && pRow < 10 && board[pRow][nCol] === ship) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+//don't have ships that touch, so that there is always space between ships.
+
+//Hint: Create a function that checks if a ship is present before placing a ship, so that two ships don't get placed in the same position.
+
+//Hint: Update the function to check around the ship that was placed, above, below, and sides.
+
+//Hint: Update the function work diagonally and from the corners of the board.
+
+
 var ship = 1;
 //placeShip places five single hit ships to 2D array 'board'
 function placeShip() {
@@ -21,8 +80,10 @@ function placeShip() {
 
     var row = Math.floor(Math.random() * 10);
     var col = Math.floor(Math.random() * 10);
-    if(allClear()board[row][col] == 0) {
+    if(allClear(row, col) && board[row][col] === 0) {
       board[row][col] = ship;
+    } else {
+      i--;
     }
   }
 };
@@ -38,45 +99,6 @@ function findShip() {
     }
   }
 };
-
-var nRow = row - 1
-var pRow = row + 1
-var nCol = col - 1
-var pCol = col + 1
-
-function allClear(row, col) {
-  if (nRow < 0) {
-    nRow = row
-  }
-  if (pRow > 10) {
-    pRow = row
-  }
-  if (nCol < 0) {
-    nCol = col
-  }
-  if (pCol > 10) {
-    pCol = col
-  }
-};
-
-return (board[row][col] !== ship);
-return (board[nRow][nCol] !== ship);
-return (board[pRow][pCol] !== ship);
-return (board[row][nCol] !== ship);
-return (board[row][pCol] !== ship);
-return (board[nRow][col] !== ship);
-return (board[nRow][pol] !== ship);
-return (board[pRow][col] !== ship);
-return (board[pRow][nCol] !== ship);
-
-//don't have ships that touch, so that there is always space between ships.
-
-//Hint: Create a function that checks if a ship is present before placing a ship, so that two ships don't get placed in the same position.
-
-//Hint: Update the function to check around the ship that was placed, above, below, and sides.
-
-//Hint: Update the function work diagonally and from the corners of the board.
-
 
 
 
